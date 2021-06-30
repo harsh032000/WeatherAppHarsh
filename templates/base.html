@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.5.3/cerulean/bootstrap.min.css"
+        integrity="sha512-dQLT/B7byn2LjN/DN4zeBKpwGV6qbidV0XiMRWQOL7TGrV7FkZFldkGG+DGMU+CQnMTcRZlUI7GMWt1j6akNew=="
+        crossorigin="anonymous" />
+    <title>Weather APP</title>
+
+</head>
+
+<body>
+
+    <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top: -50px">
+        <h1 class="display-5">Weather Checker</h1>
+        <img src="/static/images/weatherpic.png" class="image" style="width: 100px; margin-bottom: 50px ">
+
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <form method="post" class="col-md">
+            {% csrf_token %}
+            <div class="input-group">
+                <input type="text" class="form_control" name="city" placeholder="Enter the City Name ......">
+                <div class="input-group-btn">
+                    <button type="submit" class="btn btn-secondary">Search</button>
+                </div>
+            </div>
+        </form>
+    </nav>
+
+    <br> <br>
+    <div class="row">
+        <div class="col d-flex justify-content-center">
+            <div>
+                <div>
+                    {% if temp %}
+                    <hr>
+                    <h2><span>City: </span> {{cityname}} </h2>
+                    <h4>{{main}} <img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px">
+                    </h4>
+                    </hr>
+                    <h4><span>Temperature in Celsius:</span> {{temp}} <span>°C</span></h4>
+                    <h6><span>Feels Like: </span> {{feels_like}} <span>°C</span></h6>
+                    <h4><span>Max Temperature: </span> {{temp_max}} <span>°C</span></h4>
+                    <h4><span>Min Temperature: </span> {{temp_min}} <span>°C</span></h4>
+                    <h4><span>Description: </span> {{description}}</h4>
+                    <h4><span>Pressure:</span> {{pressure}} </h4>
+                    <h4><span>Humidity: </span> {{humidity}}</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
